@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<!--
+	Resto by GetTemplates.co
+	URL: https://gettemplates.co
+-->
+<html lang="fr">
+
+
+<head>
+
+   <link rel="stylesheet" type = "text/css" href ="css/reservation.css">
+  <link rel="stylesheet" type = "text/css" href ="css/bootstrap.min.css">
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+  <body>
+
+  <!--Back to top button..................................................................................-->
+    <button onclick="topFunction()" id="myBtn" title="Go to top">
+      <span class="glyphicon glyphicon-chevron-up"></span>
+    </button>
+  <!--Javacript for back to top button....................................................................-->
+    <script type="text/javascript">
+      window.onscroll = function()
+      {
+        scrollFunction()
+      };
+
+      function scrollFunction(){
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          document.getElementById("myBtn").style.display = "block";
+        } else {
+          document.getElementById("myBtn").style.display = "none";
+        }
+      }
+
+      function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+    </script>
+
+<!--<body data-spy="scroll" data-target="#navbar">
+	<div id="side-nav" class="sidenav">
+	<a href="javascript:void(0)" id="side-nav-close">&times;</a>
+	
+	<div class="sidenav-content">
+		<p>
+			Kuncen WB1, Wirobrajan 10010, DIY
+		</p>
+		<p>
+			<span class="fs-16 primary-color">(+68) 120034509</span>
+		</p>
+		<p>info@yourdomain.com</p>
+	</div>
+</div>	<div id="side-search" class="sidenav">
+	<a href="javascript:void(0)" id="side-search-close">&times;</a> -->
+<!--	
+<?PHP
+session_start();
+?> -->
+	
+ 	<nav class="navbar navbar-inverse navbar-fixed-top navigation-clean-search" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.php">Omek Houria </a>
+        </div>
+
+        <div class="collapse navbar-collapse " id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a href="index.php">Accueil</a></li>
+             <li><a href="menu.php">Menu</a></li>
+            <li class="active"><a href="aboutus.php">A propos de nous</a></li>
+            <li><a href="contactus.php">Nous contacter</a></li>
+                <li>
+                        <a href="reservation.html">Réserver une table</a>
+                    </li>
+          </ul>
+
+                </div>
+                <li class="nav-item">
+                    <a id="side-search-open" class="nav-link" href="#">
+                        <span class="lnr lnr-magnifier"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>		<!-- Reservation Section -->
+<section id="gtco-reservation" class="bg-fixed bg-white section-padding overlay" style="background-image: url(images/reservation-bg.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="section-content bg-white p-5 shadow">
+                    <div class="heading-section text-center">
+                        <br>
+                        <span class="subheading">
+                            Réservation
+                        </span>
+                         <br>
+                          <br>
+                           <br>
+                            <br>
+                        <h2>
+                           Reserve maintenant
+                        </h2>
+                         <br>
+                    </div>
+                <!--   <?php
+if(isset($_SESSION['login_user1'])){
+
+?> -->
+                    <form name="myform" method="POST" action="reservation.php">
+          <table class="table table-striped">
+                  <thead>
+                        
+            <tr>
+          <td><label class="esp-lbl">identifiant </label></td>
+          <td><input type="text" name="id"></td>
+          
+        </tr>
+        
+        <tr>
+          <td><label class="esp-lbl">Nom</label></td>
+          <td><input type="text" name="nom"></td>
+        </tr>
+        <tr>
+          <td><label class="esp-lbl">Prenom</label></td>
+          <td><input type="text" name="prenom"></td>
+        </tr>
+         <tr>
+          <td><label class="esp-lbl">Date de reservation </label></td>
+          <td><input type="date" id="start" name="date_"
+       value="2020-05-04"
+       min="2020-05-04" max="2020-06-30"></td>
+        </tr>
+        <tr>
+          <td><label class="esp-lbl">heure</label></td>
+          <td><input type="time" id="heure" name="heure"
+       min="10:00" max="21:00" required></td>
+        </tr>
+        <tr>
+        <td><label class="esp-lbl">table</label></td>
+        <td>
+          
+        
+        <select  size="1" name="ntable">
+          <optgroup label="table 1personne" ></optgroup>
+  <option value="BT_1">BT_1</option>
+  <option value="BT_2">BT_2</option>
+  <option value="BT_3">BT_3</option>
+  <option value="BT_4">BT_4</option>
+  <option value="BT_5">BT_5</option>
+  <option value="BT_6">BT_6</option>
+  <option value="BT_7">BT_7</option>
+  <option value="BT_8">BT_8</option>
+    <optgroup label="table 2 personnes" ></optgroup>
+     <option value="T_04">T_04</option>
+  <option value="T_05">T_05</option>
+    <optgroup label="table 4 personnes" ></optgroup>
+     <option value="T_01">T_01</option>
+  <option value="T_02">T_02</option>
+   <option value="T_03">T_03</option>
+   <optgroup label="table 5 personnes" ></optgroup>
+     <option value="T_01">RT_01</option>
+  <option value="T_02">RT_02</option>
+   <option value="T_03">RT_03</option>
+   <option value="T_04">RT_04</option>
+</select>
+
+        </td>
+        </tr>
+        <tr>
+          <tr>
+          <td><label class="esp-lbl">nombre</label></td>
+          <td><input type="text" name="nbr"></td>
+        </tr>
+       
+        <tr>
+          <td><input type="submit" value="Reserver" ></td>
+        </tr>
+        <div class="col-lg-6">
+          <div class="card">
+            <td colspan="2"><img src="tablef.png" style="width: 600px; height: 350px "></td>
+          </div>
+        </div>
+        
+      
+</thead>  </table></form>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
+<?php
+}
+?>
+<!-- End of Reservation Section -->		<footer class="mastfoot pb-5 bg-white section-padding pb-0">
+    <div class="inner container">
+         <div class="row">
+         	<div class="col-lg-4">
+         		<div class="footer-widget pr-lg-5 pr-0">
+         			<img src="img/logo.png" class="img-fluid footer-logo mb-3" alt="">
+	         		<p>Pas besoin de rentrer à la maison pour manger, venez chez
+nous et faites comme chez vous !
+Des plats quotidiens pour tous les goûts vous sont proposés avec des prix corrects, n'hésitez pas à partager avec nous vos envies et vos avis.
+See you soon !</p>
+	         		<nav class="nav nav-mastfoot justify-content-start">
+		                <a class="nav-link" href="#">
+		                	<i class="fab fa-facebook-f"></i>
+		                </a>
+		                <a class="nav-link" href="#">
+		                	<i class="fab fa-twitter"></i>
+		                </a>
+		                <a class="nav-link" href="#">
+		                	<i class="fab fa-instagram"></i>
+		                </a>
+		            </nav>
+         		</div>
+         		
+         	</div>
+         	<div class="col-lg-4">
+         		<div class="footer-widget px-lg-5 px-0">
+         			<h4>Heures d'ouverture </h4>
+	         		<ul class="list-unstyled open-hours">
+		                <li class="d-flex justify-content-between"><span>Lundi</span><span>Fermé</span></li>
+		                <li class="d-flex justify-content-between"><span>Mardi</span><span>9:00 - 24:00</span></li>
+		                <li class="d-flex justify-content-between"><span>Mercredi</span><span>9:00 - 24:00</span></li>
+		                <li class="d-flex justify-content-between"><span>Jeudi</span><span>9:00 - 24:00</span></li>
+		                <li class="d-flex justify-content-between"><span>Vendredi</span><span>9:00 - 02:00</span></li>
+		                <li class="d-flex justify-content-between"><span>Samedi</span><span>9:00 - 02:00</span></li>
+		                <li class="d-flex justify-content-between"><span>Dimanche</span><span> 9:00 - 02:00 </span></li>
+		              </ul>
+         		</div>
+         		
+         	</div>
+
+         	<div class="col-lg-4">
+         		<div class="footer-widget pl-lg-5 pl-0">
+         			<h4>Newsletter</h4>
+	         		
+	         		<form id="newsletter">
+						<div class="form-group">
+							<input type="email" class="form-control" id="emailNewsletter" aria-describedby="emailNewsletter" placeholder="Enter email">
+						</div>
+						<button type="submit" class="btn btn-primary w-100">Submit</button>
+					</form>
+         		</div>
+         		
+         	</div>
+         	<div class="col-md-12 d-flex align-items-center">
+         		<p class="mx-auto text-center mb-0">Copyright 2019. All Right Reserved. </p>
+         	</div>
+            
+        </div>
+    </div>
+</footer>	</div>
+	
+</div>
+	<!-- External JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+	<script src="vendor/bootstrap/popper.min.js"></script>
+	<script src="vendor/bootstrap/bootstrap.min.js"></script>
+	<script src="vendor/select2/select2.min.js "></script>
+	<script src="vendor/owlcarousel/owl.carousel.min.js"></script>
+	<script src="https://cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.js"></script>
+	<script src="vendor/stellar/jquery.stellar.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+
+	<!-- Main JS -->
+	<script src="js/app.min.js "></script>
+</body>
+</html>
