@@ -126,6 +126,20 @@ try{
             die('Erreur: '.$e->getMessage());
         }
 	}
+
+	function rechercherEmployesParNomPrenom($recherche){
+		$sql="SELECT * FROM employe
+      WHERE nom LIKE '%$recherche%'
+      OR prenom LIKE '%$recherche%' ";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
 }
 
 class reservationC {
@@ -235,8 +249,10 @@ try{
         }
 	}
 	
-	function rechercherreservation($heure){
-		$sql="SELECT * from reservation where heure=$heure";
+	function rechercherreservation($rech){
+		$sql="SELECT id,nom,prenom,heure,ntable,nbr,date_ from reservation 
+		 where id LIKE '%$rech%' OR heure LIKE %$rech OR ntable LIKE %$rech% OR nbr LIKE %$rech% OR  nom LIKE '%$rech%' OR prenom LIKE '%$rech%'
+      ";
 		$db = config::getConnexion();
 		try{
 		$liste=$db->query($sql);
@@ -246,6 +262,46 @@ try{
             die('Erreur: '.$e->getMessage());
         }
 	}
-}
+	function confirmation(){
+
+$destinataires = "maha.segni@esprit.tn";
+$sujet = "Confirmation de votre réservation";
+ 
+// en-têtes expéditeur
+$entetes = "From : support@gmail.gen.nz";
+ 
+
+ 
+// priorité urgente
+$entetes .= "X-Priority : 1\n";
+ 
+mail($destinataires, $sujet, "Confirmation de votre réservation ", $entetes);
+ echo "L'email a été envoyé.";
+            
+       
+	}
+	function tridate(){
+			$sql="SELECT * FROM reservation ORDER BY date_ desc";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
+	function trinbr(){
+			$sql="SELECT * FROM reservation ORDER BY nbr desc";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
+} 
 
 ?>
