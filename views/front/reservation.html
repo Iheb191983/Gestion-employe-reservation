@@ -120,29 +120,25 @@ session_start();
 if(isset($_SESSION['login_user1'])){
 
 ?> -->
-                    <form name="myform" method="POST" action="reservation.php">
-          <table class="table table-striped">
+                    <form name="myform" method="POST" action="ajreservation.php">
+          <table >
                   <thead>
                         
-            <tr>
-          <td><label class="esp-lbl">identifiant </label></td>
-          <td><input type="text" name="id"></td>
           
-        </tr>
         
         <tr>
           <td><label class="esp-lbl">Nom</label></td>
-          <td><input type="text" name="nom"></td>
+          <td><input type="text" name="nom" value="maha" readonly></td>
         </tr>
         <tr>
           <td><label class="esp-lbl">Prenom</label></td>
-          <td><input type="text" name="prenom"></td>
+          <td><input type="text" name="prenom" value="sg" readonly></td>
         </tr>
          <tr>
           <td><label class="esp-lbl">Date de reservation </label></td>
           <td><input type="date" id="start" name="date_"
-       value="2020-05-04"
-       min="2020-05-04" max="2020-06-30"></td>
+       value="2020-05-16"
+       min="2020-05-16" max="2020-06-30"></td>
         </tr>
         <tr>
           <td><label class="esp-lbl">heure</label></td>
@@ -206,6 +202,12 @@ if(isset($_SESSION['login_user1'])){
 <?php
 }
 ?>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <!-- End of Reservation Section -->		<footer class="mastfoot pb-5 bg-white section-padding pb-0">
     <div class="inner container">
          <div class="row">
@@ -250,17 +252,17 @@ See you soon !</p>
          		<div class="footer-widget pl-lg-5 pl-0">
          			<h4>Newsletter</h4>
 	         		
-	         		<form id="newsletter">
-						<div class="form-group">
-							<input type="email" class="form-control" id="emailNewsletter" aria-describedby="emailNewsletter" placeholder="Enter email">
-						</div>
+	         	 <form id="newsletter">
+            <div class="form-group">
+              <input type="email" class="form-control" id="emailNewsletter" aria-describedby="emailNewsletter" placeholder="Enter email">
+            </div>
 						<button type="submit" class="btn btn-primary w-100">Submit</button>
 					</form>
          		</div>
          		
          	</div>
          	<div class="col-md-12 d-flex align-items-center">
-         		<p class="mx-auto text-center mb-0">Copyright 2019. All Right Reserved. </p>
+         		<p class="mx-auto text-center mb-0">Copyright 2020. All Right Reserved. </p>
          	</div>
             
         </div>

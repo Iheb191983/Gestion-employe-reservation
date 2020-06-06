@@ -1,0 +1,201 @@
+<HTML>
+<head>
+	<title>Ajouter Employe</title>
+<!--<link rel="stylesheet" href="style.css">!-->
+ <link rel="stylesheet" type = "text/css" href ="css/myrestaurant.css">
+  <link rel="stylesheet" type = "text/css" href ="css/bootstrap.min.css">
+<style>
+#msg_erreur {
+   display: none;
+   color: red;
+   width: 250px;
+   height: 100px;
+}
+
+.label {
+   float: left;
+  color: red;
+}
+.form {
+	border-top-color: blue;
+   background-color:#aqua;
+}
+h1{width: 500px;
+color: blue; 
+text-align: center;}
+#bouton {
+	background-color: aqua;
+	color: black;
+
+.imge {
+width: 50px ;
+height: 50px;"
+}
+</style>
+
+</head>
+<body>
+
+     <nav class="navbar navbar-inverse navbar-fixed-top navigation-clean-search" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.php">Omek Hourias</a>
+        </div>
+
+        <div class="collapse navbar-collapse " id="myNavbar">
+          <ul class="nav navbar-nav">
+           <li><a href="index.php">Accueil</a></li>
+            <li><a href="aboutus.php">A propos de nous</a></li>
+            <li><a href="contactus.php">Nous contacter</a></li>
+             <li>
+              <a href="reservation.html">Réserver une table</a>
+                    </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Welcome <?php echo $login_session; ?> </a></li>
+            <li class="active"> <a href="managerlogin.php">MANAGER CONTROL PANEL</a></li>
+            <li><a href="logout_m.php"><span class="glyphicon glyphicon-log-out"></span> Log Out </a></li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+    <div class="container">
+    <div class="jumbotron">
+     <h1>Hello Manager! </h1>
+     <p>Manage all your restaurant from here</p>
+
+    </div>
+    </div>
+    <div class="container">
+    <div class="container">
+        <div class="col">
+            
+        </div>
+    </div>
+
+    
+        <div class="col-xs-3" style="text-align: center;">
+
+        <div class="list-group">
+         <a href="afficherreservation.php" class="list-group-item ">Liste des réservations </a>
+        <a href="ajoutreservation.html" class="list-group-item active">Ajouter une réservation </a>
+        <a href="afficherreservation.php" class="list-group-item ">Modifier une réservation </a>
+        <a href="supprimerreservation.php" class="list-group-item ">Supprimer une réservation </a>  
+      </div>
+    </div>
+
+<div class="col-xs-9">
+      <div class="form-area" style="padding: 0px 100px 100px 100px;">
+<form method="POST" action="ajoutreservation.php" id="form" onsubmit="return VerifForm(this)">
+	<div>
+<h1>Bienvenue </h1>
+	</div>
+
+	<div id="msg_erreur"></div>
+<div>
+
+	</div>
+<table>
+	
+	<div>
+<table>
+    <tr>
+      <td colspan="2"><h2 class="titre"> ajouter une réservation </h2></td>
+    </tr>
+    <tr>
+      <td>
+        <form name="myform" method="POST" action="ajoutreservation.php">
+          <table>
+            <tr>
+          <td><label class="esp-lbl">identifiant </label></td>
+          <td><input type="text" name="id"></td>
+        </tr>
+        <tr>
+          <td><label class="esp-lbl">Nom</label></td>
+          <td><input type="text" name="nom"></td>
+        </tr>
+        <tr>
+          <td><label class="esp-lbl">Prenom</label></td>
+          <td><input type="text" name="prenom"></td>
+        </tr>
+        <tr>
+          <td><label class="esp-lbl">Date de réservation </label></td>
+          <td><input type="date" id="start" name="date_"
+       value="2020-04-20"
+       min="2020-04-21" max="2020-05-10"></td>
+        </tr>
+        <tr>
+          <td><label class="esp-lbl">heure</label></td>
+          <td><input type="time" id="heure" name="heure"
+       min="10:00" max="21:00" required></td>
+        </tr>
+      <tr>
+        <td><label class="esp-lbl">table</label></td>
+        <td>
+        <select id="table" size="1" name="table">
+          <optgroup label="table 1personne" ></optgroup>
+  <option value="BT_1">BT_1</option>
+  <option value="BT_2">BT_2</option>
+  <option value="BT_3">BT_3</option>
+  <option value="BT_4">BT_4</option>
+  <option value="BT_5">BT_5</option>
+  <option value="BT_6">BT_6</option>
+  <option value="BT_7">BT_7</option>
+  <option value="BT_8">BT_8</option>
+    <optgroup label="table 2 personnes" ></optgroup>
+     <option value="T_04">T_04</option>
+  <option value="T_05">T_05</option>
+    <optgroup label="table 4 personnes" ></optgroup>
+     <option value="T_01">T_01</option>
+  <option value="T_02">T_02</option>
+   <option value="T_03">T_03</option>
+   <optgroup label="table 5 personnes" ></optgroup>
+     <option value="T_01">RT_01</option>
+  <option value="T_02">RT_02</option>
+   <option value="T_03">RT_03</option>
+   <option value="T_04">RT_04</option>
+</select>
+<tr>
+          <td><label class="esp-lbl">nombre</label></td>
+          <td><input type="number" max="5" min="1" name="nbr"></td>
+        </tr>
+        </td>
+        </tr>
+        
+        <tr>
+          <td><input type="submit" value="Reserver "></td>
+        </tr>
+        <tr>
+          <td colspan="2"><hr></td>
+        </form>
+        </tr>
+        <tr>
+          <td colspan="2"><p id="erreur"></p></td>
+        </tr>
+      </table> <!--</td>
+      <td><img src="tablef.png" class="imge"></td>
+    </tr>-->
+    
+  </table>
+</table>
+<div>
+
+	</div>
+	</div>
+</form>
+</body>
+<footer class="container-fluid bg-4 text-center">
+  <br>
+  <p> Omek Houria 2020 | &copy All Rights Reserved </p>
+  <br>
+  </footer>
+</HTMl>
