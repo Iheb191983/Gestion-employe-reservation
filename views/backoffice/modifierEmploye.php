@@ -1,3 +1,10 @@
+
+<?php
+session_start();
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en"><head>
   <meta charset="utf-8">
@@ -259,6 +266,7 @@ if (isset($_GET['cin'])){
 }
 if (isset($_POST['modifier'])){
 	$employe=new employe($_POST['cin'],$_POST['nom'],$_POST['prenom'],$_POST['tarifHoraire'],$_POST['adresse_m'],$_POST['numero'],$_POST['categorie']);
+    $employeC = new EmployeC();
 	$employeC->modifierEmploye($employe,$_POST['cin_ini']);
    header('Location: tables2.php');// prob avec le header 
 }

@@ -1,7 +1,11 @@
 
 
+<?php
+session_start();
 
 
+
+?>
 <!DOCTYPE html>
 <html lang="en"><head>
   <meta charset="utf-8">
@@ -27,10 +31,10 @@
   <link href="assets/css/sidebar-menu.css" rel="stylesheet">
   <!-- Custom Style-->
   <link href="assets/css/app-style.css" rel="stylesheet">
-  
+    
 </head>
 
-<body class="bg-theme bg-theme1  pace-done"><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" 
+<body class="bg-theme bg-theme1  pace-done"><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%"> 
 
   <div class="pace-progress-inner"></div>
 </div>
@@ -71,11 +75,26 @@
         </a>
       </li>
 
-      <li class="active">
-        <a href="tables2.php" class="active">
-          <i class="zmdi zmdi-grid"></i> <span>Tables</span>
-        </a>
-      </li>
+      
+ <li class="active has-sub">
+                                                  <a class="js-arrow" href="#">
+                                                      <i class="fas fa-tachometer-alt"></i>Menu</a>
+                                                        <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                                            <li>
+                                                                <a href="view_menu_items.php">        Liste des Menus</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="view_food_items.php">       Liste des Plats</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="statistique.php">    Statistique des Plats</a>
+                                                                </li>
+                                                       
+                                                          <li>
+                                                                    <a href="tables2.php"> Réservations & employes</a>
+                                                                </li>
+                                                          </ul>
+                                                </li>
 
       <li>
         <a href="calendar.html">
@@ -101,7 +120,7 @@
           <i class="zmdi zmdi-account-circle"></i> <span>Registration</span>
         </a>
       </li>
-	  
+    
 
       <li class="sidebar-header">LABELS</li>
       <li><a href="javaScript:void();"><i class="zmdi zmdi-coffee text-danger"></i> <span>Important</span></a></li>
@@ -177,11 +196,14 @@
   </ul>
 </nav>
 </header>
+<div style="text-align:center;padding:8em 0;"> <h4><a style="text-decoration:none;" href="https://www.zeitverschiebung.net/fr/country/tn"><span style="color:gray;">Heure actuelle</span><br />Tunisie</a></h4> <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=fr&size=small&timezone=Africa%2FTunis" width="100%" height="90" frameborder="0" seamless></iframe> </div>
 <!--End topbar header-->
+    
     
 
           <?PHP
 include "../core/employeC.php";
+
 ?>
 <div class="clearfix"></div>
 	
@@ -199,19 +221,32 @@ include "../core/employeC.php";
 
 
  <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
               <form action="ajoutEmploye.html">
               <h5 class="card-title">gestion employe
               
-  <input type="submit" name="Ajout" value="ajouter" class="bouton" style="background-color: #47abd5;">
-			 </h5></form> <div > <!-- class="table-responsive" -->
+  <input type="submit" name="Ajout" value="ajouter" class="bouton" style="background-color: #47abd5;"></form>
+      <form method="POST" action="recherche.php" >
+         Rechercher un mot : <input type="text" name="recherche">
+     <input type="SUBMIT" value="Search!"style="background-color: #47abd5;"> 
+       </h5></form>
+        <div> <!-- class="table-responsive" -->
           <div class="table-responsive">
 <?PHP
 
 $employe1C=new EmployeC();
 $listeEmployes=$employe1C->afficherEmployes();
+
+
+//var_dump($listeEmployes->fetchAll());
+?>
+<?PHP
+
+//$employe2C=new EmployeC();
+//$listeEmployes1=$employe2C->rechercherEmployesParNomPrenom($_POST['recherche']);
+
 
 //var_dump($listeEmployes->fetchAll());
 ?><form method="POST">
@@ -253,85 +288,47 @@ foreach($listeEmployes as $row){
   </tr></center>
   <?PHP
 }
+
 ?>
-                  </tbody>
-                </table>
-            </div></form></div>
+          
+                </table></form>
+            </div>
+          
+          </div>
             </div>
           </div>
         </div>
+     <br>
+<br>
+<br>
+<br>          
+
 <div class="row">
-       
-          <div class="card">
-            <div class="card-body"><div class="table-responsive">
-<form method="POST" action=""> 
-     Rechercher un mot : <input type="text" name="recherche">
-     <input type="SUBMIT" value="Search!"style="background-color: #47abd5;"> 
-     <table class="table table-striped">
-                  <thead>
-
-<?php
-
-
-    $db_server = 'localhost'; // Adresse du serveur MySQL
-    $db_name = 'omek_houria';            // Nom de la base de données
-    $db_user_login = 'root';  // Nom de l'utilisateur
-    $db_user_pass = '';       // Mot de passe de l'utilisateur
-
-    // Ouvre une connexion au serveur MySQL
-    $conn = mysqli_connect($db_server,$db_user_login, $db_user_pass, $db_name);
-
-
-     // Récupère la recherche
-     $recherche = isset($_POST['recherche']) ? $_POST['recherche'] : '';
-
-     // la requete mysql
-     $q = $conn->query(
-     "SELECT cin,nom, prenom, adresse_m, numero FROM employe
-      WHERE nom LIKE '%$recherche%'
-      OR prenom LIKE '%$recherche%'
-      OR categorie LIKE '%$recherche%'
-      LIMIT 10");
-echo "<tr><td><br>";
-     echo 'Cin , Nom , Prenom , Adresse mail , Numero  <br/>';
-echo "</div></td></tr>";
-     // affichage du résultat
-     while( $r = mysqli_fetch_array($q)){
-
-      echo "<tr><td><br>";
-     echo $r['cin'].', '.$r['nom'].', '.$r['prenom'].', '.$r['adresse_m'].', '.$r['numero'].' <br/>';
-echo "</div></td></tr>";
-    
-     }
-           ?></thead></table></tbody></div>
-        </form>   
-        </div>      
-    </div>
-</div>
-<br>
-<br>
-<br>
-<br> 
-<div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
              <form action="accueil.html">
               <h5 class="card-title">gestion reservation
               
-  <input type="submit" name="Ajout" value="ajouter" class="bouton"style="background-color: #47abd5;">
-       </h5></form>  
-        <div class="table-responsive">
-          <?PHP
-
-$reservation1C=new reservationC();
-$listereservation=$reservation1C->afficherreservation();
-
+  <input type="submit" name="Ajout" value="ajouter" class="bouton"style="background-color: #47abd5;"></form>
+      <form method="POST" action="recherche1.php">
+    Rechercher un mot : <input type="text" name="recherche1">
+     <input type="SUBMIT" name="ok"value="Search!"style="background-color: #47abd5;">  
+       
+        
+     <div style="padding-left:70%">
+        <a href="tri1.php">tri par date</a><br>
+   <a href="tri2.php">tri par nombre</a></div></h5></form>  
+         <div class="table-responsive">
+<?PHP
+ $reservation2C=new reservationC();
+$listereservation1=$reservation2C->afficherreservation();
 //var_dump($listeEmployes->fetchAll());
 ?><form method="POST">
                <table class="table table-striped">
-                  <thead><tr>
-                    <td>id</td>
+                  <thead>
+         <tr>
+<td>id</td>
 <td>Nom</td>
 <td>Prenom</td>
 <td>date  </td>
@@ -340,12 +337,15 @@ $listereservation=$reservation1C->afficherreservation();
 <td>nombre </td>
 <td>supprimer</td>
 <td>modifier</td>
+<td>confirmation</td>
 </tr>
                   </thead>
                   <tbody>
                     
 <?PHP
-foreach($listereservation as $row){
+ 
+
+foreach($listereservation1 as $row){
   ?>
   <center>
   <tr class="donn">
@@ -360,15 +360,19 @@ foreach($listereservation as $row){
 
   <td><form method="POST" action="supprimerReservation.php">
   <input type="submit" name="supprimer" value="supprimer" class="bouton"  onclick="return confirm('Etes vous sûre de vouloir supprimer la reservation suivante ?');" style="background-color: #47abd5;">
-  <input type="hidden" value="<?PHP echo $row['id']; ?>" name="id">
+<input type="hidden" value="<?PHP echo $row['id']; ?>" name="id">
   </form>
   </td>
-  <td><a href="modifierReservation.php?cin=<?PHP echo $row['id']; ?>">
+  
+   <td><a href="modifierReservation.php?id=<?PHP echo $row['id']; ?>">
   Modifier</a></td>
+  <td><a href="confirm.php">
+  confirmation</a></td>
   </tr></center>
   <?PHP
 }
 ?>
+
 
                   </tbody>
                 </table></form>
@@ -377,56 +381,7 @@ foreach($listereservation as $row){
           </div>
         </div>
 
-<div class="row">
-       
-          <div class="card">
-            <div class="card-body"><div class="table-responsive">
-<form method="POST" action=""> 
-     Rechercher un mot : <input type="text" name="recherche">
-     <input type="SUBMIT" value="Search!"style="background-color: #47abd5;"> 
-     <table class="table table-striped">
-                  <thead>
 
-<?php
-
-
-    $db_server = 'localhost'; // Adresse du serveur MySQL
-    $db_name = 'omek_houria';            // Nom de la base de données
-    $db_user_login = 'root';  // Nom de l'utilisateur
-    $db_user_pass = '';       // Mot de passe de l'utilisateur
-
-    // Ouvre une connexion au serveur MySQL
-    $conn = mysqli_connect($db_server,$db_user_login, $db_user_pass, $db_name);
-
-
-     // Récupère la recherche
-     $recherche = isset($_POST['recherche']) ? $_POST['recherche'] : '';
-
-     // la requete mysql
-     $q = $conn->query(
-     "SELECT nom, prenom, heure, date_, ntable FROM reservation
-      WHERE nom LIKE '%$recherche%'
-      OR prenom LIKE '%$recherche%'
-      OR ntable LIKE '%$recherche%'
-      OR date_ LIKE '%$recherche%'
-      OR heure LIKE '%$recherche%'
-      LIMIT 10");
-echo "<tr><td><br>";
-     echo ' Nom , Prenom , date , heure, numero table  <br/>';
-echo "</div></td></tr>";
-     // affichage du résultat
-     while( $r = mysqli_fetch_array($q)){
-
-      echo "<tr><td><br>";
-     echo $r['nom'].', '.$r['prenom'].', '.$r['date_'].', '.$r['heure'].', '.$r['ntable'].' <br/>';
-echo "</div></td></tr>";
-    
-     }
-           ?></thead></table></tbody></div>
-        </form>   
-        </div>      
-    </div>
-</div>
 <br>
 <br>
 <br>
@@ -434,28 +389,12 @@ echo "</div></td></tr>";
 
 
 
-     <div class="col-12 col-lg-4 col-xl-4">
-        <div class="card">
-           <div class="card-header">Weekly sales
-             <div class="card-action">
-             <div class="dropdown">
-             <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
-              <i class="icon-options"></i>
-             </a>
-              <div class="dropdown-menu dropdown-menu-right">
-              <a class="dropdown-item" href="javascript:void();">Action</a>
-              <a class="dropdown-item" href="javascript:void();">Another action</a>
-              <a class="dropdown-item" href="javascript:void();">Something else here</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="javascript:void();">Separated link</a>
-               </div>
-              </div>
-             </div>
-           </div>
+    
 
 <br>
 <br>
 
+      
         <div class="col-lg-6">
           <div class="card">
             
@@ -464,10 +403,10 @@ echo "</div></td></tr>";
       </div><!--End Row-->
 
       <!--End Row-->
-	  
-	  <!--start overlay-->
-		  <div class="overlay toggle-menu"></div>
-		<!--end overlay-->
+    
+    <!--start overlay-->
+      <div class="overlay toggle-menu"></div>
+    <!--end overlay-->
 
     </div>
     <!-- End container-fluid-->
@@ -476,18 +415,18 @@ echo "</div></td></tr>";
    <!--Start Back To Top Button-->
     <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
     <!--End Back To Top Button-->
-	
-	<!--Start footer-->
-	<footer class="footer">
+  
+  <!--Start footer-->
+  <footer class="footer">
       <div class="container">
         <div class="text-center">
           Copyright © 2020 Omek Houria Admin
         </div>
       </div>
     </footer>
-	<!--End footer-->
-	
-	<!--start color switcher-->
+  <!--End footer-->
+  
+  <!--start color switcher-->
    <div class="right-sidebar">
     <div class="switcher-icon">
       <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
@@ -516,7 +455,7 @@ echo "</div></td></tr>";
         <li id="theme10"></li>
         <li id="theme11"></li>
         <li id="theme12"></li>
-		<li id="theme13"></li>
+    <li id="theme13"></li>
         <li id="theme14"></li>
         <li id="theme15"></li>
       </ul>
@@ -532,7 +471,7 @@ echo "</div></td></tr>";
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/popper.min.js"></script>
   <script src="assets/js/bootstrap.min.js"></script>
-	
+  
   <!-- simplebar js -->
   <script src="assets/plugins/simplebar/js/simplebar.js"></script>
   <!-- sidebar-menu js -->
@@ -540,7 +479,7 @@ echo "</div></td></tr>";
   
   <!-- Custom scripts -->
   <script src="assets/js/app-script.js"></script>
-	
+  
 </div>
 
 </body></html>

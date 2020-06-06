@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
-  <title>Dashtreme Admin </title>
+  <title>Dashtreme Admin - Free Dashboard for Bootstrap 4 by Codervent</title>
   <!-- loader-->
   <link href="assets/css/pace.min.css" rel="stylesheet"/>
   <script src="assets/js/pace.min.js"></script>
@@ -62,12 +62,25 @@
         </a>
       </li>
 
-      <li>
-        <a href="tables2.php">
-          <i class="zmdi zmdi-grid"></i> <span>Tables</span>
-
-        </a>
-      </li>
+ <li class="active has-sub">
+                                                  <a class="js-arrow" href="#">
+                                                      <i class="fas fa-tachometer-alt"></i>Menu</a>
+                                                        <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                                            <li>
+                                                                <a href="view_menu_items.php">        Liste des Menus</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="view_food_items.php">       Liste des Plats</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="statistique.php">    Statistique des Plats</a>
+                                                                </li>
+                                                          
+                                                          <li>
+                                                                    <a href="tables2.php"> Réservations & employes</a>
+                                                                </li>
+                                                          </ul>
+                                                </li>
 
       <li>
         <a href="calendar.html">
@@ -149,8 +162,8 @@
            <div class="media">
              <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
             <div class="media-body">
-            <h6 class="mt-2 user-title">Maha Segni </h6>
-            <p class="user-subtitle">maha.segni@omekhouria.com</p>
+            <h6 class="mt-2 user-title">Maha segni</h6>
+            <p class="user-subtitle">maha.segni@esprit.tn</p>
             </div>
            </div>
           </a>
@@ -162,7 +175,7 @@
         <li class="dropdown-divider"></li>
         <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
         <li class="dropdown-divider"></li>
-         <li class="dropdown-item"> <a href="Login.html" target="_blank"><i class="icon-power mr-2"></i> Logout</li></a>
+        <li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li>
       </ul>
     </li>
   </ul>
@@ -182,16 +195,16 @@
         <div class="row row-group m-0">
             <div class="col-12 col-lg-6 col-xl-3 border-light">
                 <div class="card-body">
-                  <h5 class="text-white mb-0">9526 <span class="float-right"><i class="fa fa-shopping-cart"></i></span></h5>
+                  <h5 class="text-white mb-0">9 <span class="float-right"><i class="fa fa-shopping-cart"></i></span></h5>
                     <div class="progress my-3" style="height:3px;">
                        <div class="progress-bar" style="width:55%"></div>
                     </div>
-                  <p class="mb-0 text-white small-font">Total Orders <span class="float-right">+4.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+                  <p class="mb-0 text-white small-font">Total Food <span class="float-right">+4.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
                 </div>
             </div>
             <div class="col-12 col-lg-6 col-xl-3 border-light">
                 <div class="card-body">
-                  <h5 class="text-white mb-0">8323 <span class="float-right"><i class="fa fa-usd"></i></span></h5>
+                  <h5 class="text-white mb-0"> 658 663<span class="float-right"><i class="fa fa-usd"></i></span></h5>
                     <div class="progress my-3" style="height:3px;">
                        <div class="progress-bar" style="width:55%"></div>
                     </div>
@@ -204,7 +217,7 @@
                     <div class="progress my-3" style="height:3px;">
                        <div class="progress-bar" style="width:55%"></div>
                     </div>
-                  <p class="mb-0 text-white small-font">Visitors <span class="float-right">+5.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+                  <p class="mb-0 text-white small-font"> Food Revenue<span class="float-right">+5.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
                 </div>
             </div>
             <div class="col-12 col-lg-6 col-xl-3 border-light">
@@ -213,12 +226,13 @@
                     <div class="progress my-3" style="height:3px;">
                        <div class="progress-bar" style="width:55%"></div>
                     </div>
-                  <p class="mb-0 text-white small-font">Messages <span class="float-right">+2.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+                  <p class="mb-0 text-white small-font">Menu Revenue <span class="float-right">+2.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
                 </div>
             </div>
         </div>
     </div>
- </div>  
+ </div> 
+ 
 	  
 	<div class="row">
      <div class="col-12 col-lg-8 col-xl-8">
@@ -275,7 +289,7 @@
 
      <div class="col-12 col-lg-4 col-xl-4">
         <div class="card">
-           <div class="card-header">Weekly sales
+           <div class="card-header">STATISTIQUE DES TABLES 
              <div class="card-action">
              <div class="dropdown">
              <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
@@ -300,23 +314,23 @@
              <table class="table align-items-center">
                <tbody>
                  <tr>
-                   <td><i class="fa fa-circle text-white mr-2"></i> Direct</td>
-                   <td>$5856</td>
-                   <td>+55%</td>
+                   <td><i class="fa fa-circle text-white mr-2"></i> 2 personnes </td>
+                   <td>5856 DT</td>
+                   <td>+60%</td>
                  </tr>
                  <tr>
-                   <td><i class="fa fa-circle text-light-1 mr-2"></i>Affiliate</td>
-                   <td>$2602</td>
+                   <td><i class="fa fa-circle text-light-1 mr-2"></i>4 personnes</td>
+                   <td>2602 DT</td>
                    <td>+25%</td>
                  </tr>
                  <tr>
-                   <td><i class="fa fa-circle text-light-2 mr-2"></i>E-mail</td>
-                   <td>$1802</td>
-                   <td>+15%</td>
+                   <td><i class="fa fa-circle text-light-2 mr-2"></i>3 personnes</td>
+                   <td>1802 DT</td>
+                   <td>+10%</td>
                  </tr>
                  <tr>
-                   <td><i class="fa fa-circle text-light-3 mr-2"></i>Other</td>
-                   <td>$1105</td>
+                   <td><i class="fa fa-circle text-light-3 mr-2"></i>5 personnes</td>
+                   <td>1105 DT</td>
                    <td>+5%</td>
                  </tr>
                </tbody>
@@ -431,6 +445,39 @@
 
       <!--End Dashboard Content-->
 	  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 	<!--start overlay-->
 		  <div class="overlay toggle-menu"></div>
 		<!--end overlay-->
@@ -447,7 +494,7 @@
 	<footer class="footer">
       <div class="container">
         <div class="text-center">
-          Copyright © 2020 Omek Houria Admin
+          Copyright © 2018 Dashtreme Admin
         </div>
       </div>
     </footer>

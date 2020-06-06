@@ -1,11 +1,11 @@
 
+
 <?php
 session_start();
 
 
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en"><head>
   <meta charset="utf-8">
@@ -75,6 +75,25 @@ session_start();
         </a>
       </li>
 
+ <li class="active has-sub">
+                                                  <a class="js-arrow" href="#">
+                                                      <i class="fas fa-tachometer-alt"></i>Menu</a>
+                                                        <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                                            <li>
+                                                                <a href="view_menu_items.php">        Liste des Menus</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="view_food_items.php">       Liste des Plats</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="statistique.php">    Statistique des Plats</a>
+                                                                </li>
+                                                          
+                                                          <li>
+                                                                    <a href="tables2.php"> Réservations & employes</a>
+                                                                </li>
+                                                          </ul>
+                                                </li>
       <li class="active">
         <a href="tables2.php" class="active">
           <i class="zmdi zmdi-grid"></i> <span>Tables</span>
@@ -175,16 +194,22 @@ session_start();
         <li class="dropdown-divider"></li>
         <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
         <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li>
+        <li class="dropdown-item"> <a href="Login.html" target="_blank"><i class="icon-power mr-2"></i> Logout</li></a>
       </ul>
     </li>
   </ul>
 </nav>
 </header>
 <!--End topbar header-->
+    
+    
 
+          <?PHP
+include "../core/employeC.php";
+
+?>
 <div class="clearfix"></div>
-  
+	
   <div class="content-wrapper">
     <div class="container-fluid">
      
@@ -197,128 +222,190 @@ session_start();
         
       </div><!--End Row-->
 
-  <div class="row">
-        <div class="col-lg-6">
+
+ <div class="row">
+        <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">gestion reservation</h5>
-        <div class="table-responsive">
+              <form action="ajoutEmploye.html">
+              <h5 class="card-title">gestion employe
+              
+  <input type="submit" name="Ajout" value="ajouter" class="bouton" style="background-color: #47abd5;"></form>
+      <form method="POST" action="recherche.php" >
+         Rechercher un mot : <input type="text" name="recherche">
+     <input type="SUBMIT" value="Search!"style="background-color: #47abd5;"> 
+       </h5></form>
+        <div> <!-- class="table-responsive" -->
+          <div class="table-responsive">
+<?PHP
+
+$employe1C=new EmployeC();
+$listeEmployes=$employe1C->afficherEmployes();
 
 
-   <?PHP
-include "../entities/reservation.php";
-include "../core/reservationC.php";
-//if (isset($_GET['id'])){
-  $reservationC=new reservationC();
-    $result=$reservationC->recupererreservation("0003");
-  foreach($result as $row){
-    $id=$row['id'];
-    $nom=$row['nom'];
-    $prenom=$row['prenom'];
-    $heure=$row['heure'];
-    $ntable=$row['ntable'];
-      $nbr=$row['nbr'];
-        $date_=$row['date_'];
-   
+//var_dump($listeEmployes->fetchAll());
 ?>
-<center>
-<form method="POST" id="form">
-<table>
-<tr>
-<td>id</td>
-<td><input type="number" name="id" value="<?PHP echo $id ?>" class="label"></td>
-</tr>
-<tr>
-<td>Nom</td>
-<td><input type="text" name="nom" value="<?PHP echo $nom ?>" class="label"></td>
-</tr>
-<tr>
+<?PHP
+
+//$employe2C=new EmployeC();
+//$listeEmployes1=$employe2C->rechercherEmployesParNomPrenom($_POST['recherche']);
+
+
+//var_dump($listeEmployes->fetchAll());
+?><form method="POST">
+               <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <td>Cin</td>
+<td scope="col">Nom</td>
 <td>Prenom</td>
-<td><input type="text" name="prenom" value="<?PHP echo $prenom ?>" class="label"></td>
-</tr>
+<td>Salaire</td>
+<td>adresse mail </td>
+<td>numero </td>
+<td>categorie</td>
+<td>supprimer</td>
+<td>modifier</td>
+                    </tr>
+                    
+                  </thead>
+                  <tbody>
+                 <?PHP
+foreach($listeEmployes as $row){
+  ?>
+  <center>
+  <tr class="donn">
+  <td><?PHP echo $row['cin']; ?></td>
+  <td><?PHP echo $row['nom']; ?></td>
+  <td><?PHP echo $row['prenom']; ?></td>
+  <td><?PHP echo $row['tarifHoraire']; ?></td>
+  <td><?PHP echo $row['adresse_m']; ?></td>
+  <td><?PHP echo $row['numero']; ?></td>
+  <td><?PHP echo $row['categorie']; ?></td>
+  <td><form method="POST" action="supprimerEmploye.php">
+  <input type="submit" name="supprimer" value="supprimer" class="bouton"  onclick="return confirm('Etes vous sûre de vouloir supprimer l employe suivant ?');"style="background-color: #47abd5;" >
+  <input type="hidden" value="<?PHP echo $row['cin']; ?>" name="cin">
+  </form>
+  </td>
+  <td><a href="modifierEmploye.php?cin=<?PHP echo $row['cin']; ?>">
+  Modifier</a></td>
+  </tr></center>
+  <?PHP
+}
 
-<tr>
-          <td><label class="esp-lbl">heure</label></td>
-          <td><input type="time" id="heure" name="heure"
-       min="10:00" max="21:00" value="<?PHP echo $heure ?>"   ></td>
-        </tr>
-        <tr>
-            <td><label class="esp-lbl">table</label></td>
-               <td>
-               <select id="table" size="1" name="ntable" value="<?PHP echo $ntable ?>" >
-               <optgroup label="table 1personne" ></optgroup>
-              <option value="BT_1">BT_1</option>
-                <option value="BT_2">BT_2</option>
-                 <option value="BT_3">BT_3</option>
-                 <option value="BT_4">BT_4</option>
-                  <option value="BT_5">BT_5</option>
-                  <option value="BT_6">BT_6</option>
-                  <option value="BT_7">BT_7</option>
-                  <option value="BT_8">BT_8</option>
-                  <optgroup label="table 2 personnes" ></optgroup>
-                  <option value="T_04">T_04</option>
-                   <option value="T_05">T_05</option>
-                   <optgroup label="table 4 personnes" ></optgroup>
-                   <option value="T_01">T_01</option>
-                   <option value="T_02">T_02</option>
-                   <option value="T_03">T_03</option>
-                    <optgroup label="table 5 personnes" ></optgroup>
-                   <option value="T_01">RT_01</option>
-                    <option value="T_02">RT_02</option>
-                     <option value="T_03">RT_03</option>
-                    <option value="T_04">RT_04</option>
-                    </select>
-                  </td>
-                </tr>
+?>
+          
+                </table></form>
+            </div>
+          
+          </div>
+            </div>
+          </div>
+        </div>
+     <br>
+<br>
+<br>
+<br>          
+
+<div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+             <form action="accueil.html">
+              <h5 class="card-title">gestion reservation
+              
+  <input type="submit" name="Ajout" value="ajouter" class="bouton"style="background-color: #47abd5;"></form>
+      <form method="POST" action="recherche1.php">
+    Rechercher un mot : <input type="text" name="recherche1">
+     <input type="SUBMIT" name="ok"value="Search!"style="background-color: #47abd5;">  
+     <div style="padding-left:70%">
+        <a href="tri1.php">tri par date</a><br>
+   <a href="tri2.php">tri par nombre</a></div>
+       </form>  
+         <div class="table-responsive">
+<?PHP
+ $reservation2C=new reservationC();
+$listereservation1=$reservation2C->tridate();
+//var_dump($listeEmployes->fetchAll());
+?><form method="POST">
+               <table class="table table-striped">
+                  <thead>
          <tr>
-          <td><label class="esp-lbl">nombre</label></td>
-          <td><input type="text" name="nbr" value="<?PHP echo $nbr ?>"  ></td>
-        </tr>
-        
-        <tr>
-          <td><label class="esp-lbl">Date de reservation </label></td>
-          <td><input type="date" id="start" name="date_"
-       value="2020-05-16"
-       min="2020-05-16" max="2020-06-30" value="<?PHP echo $date_ ?>" ></td>
-        </tr>
-<tr>
-<td></td>
-<td><input type="submit" name="modifier" value="modifier"></td>
+<td>id</td>
+<td>Nom</td>
+<td>Prenom</td>
+<td>date  </td>
+<td>Heure</td>
+<td>numero table </td>
+<td>nombre </td>
+<td>supprimer</td>
+<td>modifier</td>
+<td>confirmation</td>
 </tr>
-<tr>
-<td></td>
-<td><input type="hidden" name="id_ini" value="<?PHP echo $_GET['id'];?>"></td>
-</tr>
-</table>
-</form>
-</center>
-
+                  </thead>
+                  <tbody>
+                    
 <?PHP
  
-}
-if (isset($_POST['modifier'])){
-  $reservation1=new reservation($_POST['id_ini'],$_POST['nom'],$_POST['prenom'],$_POST['heure'],$_POST['ntable'],$_POST['nbr'],$_POST['date_']);
-  $reservationC = new reservationC();
-  $reservationC->modifierreservation($reservation1,$_POST['id_ini']);
-  header('Location: tables2.php');
+
+foreach($listereservation1 as $row){
+  ?>
+  <center>
+  <tr class="donn">
+  <td><?PHP echo $row['id']; ?></td>
+  <td><?PHP echo $row['nom']; ?></td>
+  <td><?PHP echo $row['prenom']; ?></td>
+  <td><?PHP echo $row['date_']; ?></td>
+  <td><?PHP echo $row['heure']; ?></td>
+  <td><?PHP echo $row['ntable']; ?></td>
+  <td><?PHP echo $row['nbr']; ?></td>
+  
+
+  <td><form method="POST" action="supprimerReservation.php">
+  <input type="submit" name="supprimer" value="supprimer" class="bouton"  onclick="return confirm('Etes vous sûre de vouloir supprimer la reservation suivante ?');" style="background-color: #47abd5;">
+<input type="hidden" value="<?PHP echo $row['id']; ?>" name="id">
+  </form>
+  </td>
+  
+   <td><a href="modifierReservation.php?id=<?PHP echo $row['id']; ?>">
+  Modifier</a></td>
+  <td><a href="confirm.php">
+  confirmation</a></td>
+  </tr></center>
+  <?PHP
 }
 ?>
-  
-             
+
+
+                  </tbody>
+                </table></form>
             </div>
             </div>
           </div>
         </div>
 
+
+<br>
+<br>
+<br>
+<br> 
+
+
+
+    
+
+<br>
+<br>
+
+      
         <div class="col-lg-6">
           <div class="card">
-            <td colspan="2"><img src="tablef.png" style="width: 600px; height: 350px "></td>
+            
           </div>
         </div>
       </div><!--End Row-->
 
-<!--End Row-->
-    </div></div></div></div></div></div></div></div>
+      <!--End Row-->
+    
     <!--start overlay-->
       <div class="overlay toggle-menu"></div>
     <!--end overlay-->
@@ -343,10 +430,8 @@ if (isset($_POST['modifier'])){
   
   <!--start color switcher-->
    <div class="right-sidebar">
-
     <div class="switcher-icon">
       <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
-
     </div>
     <div class="right-sidebar-content">
 
@@ -397,6 +482,6 @@ if (isset($_POST['modifier'])){
   <!-- Custom scripts -->
   <script src="assets/js/app-script.js"></script>
   
-
+</div>
 
 </body></html>

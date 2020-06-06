@@ -1,5 +1,5 @@
 <?PHP
-include "../core/reservationC.php";
+include "../core/employeC.php";
 $reservationC=new reservationC();
 if (isset($_POST["id"])){
 	$reservationC->supprimerreservation($_POST["id"]);
